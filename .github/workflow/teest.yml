@@ -1,0 +1,58 @@
+name: Test
+
+on: [push]
+
+
+jobs:
+    run-microservice: 
+        runs-on: ubuntu-latest
+
+        # container: golang:alpine
+
+        # # Service containers to run with `runner-job`
+        # services:
+        #     # Label used to access the service container
+        #     postgres:
+        #         # Docker Hub image
+        #         image: postgres
+        #         # Provide the password for postgres
+        #         env:
+        #             POSTGRES_DB: paymentDB
+        #             POSTGRES_PASSWORD: secret
+        #         # Set health checks to wait until postgres has started
+        #         options: >-
+        #             --health-cmd pg_isready
+        #             --health-interval 10s
+        #             --health-timeout 5s
+        #             --health-retries 5
+        #         ports:
+        #             # Maps tcp port 5432 on service container to the host
+        #             - 5432:5432
+                
+        #     redis:
+        #         # Docker Hub image
+        #         image: redis
+        #         # Set health checks to wait until redis has started
+        #         options: >-
+        #             --health-cmd "redis-cli ping"
+        #             --health-interval 10s
+        #             --health-timeout 5s
+        #             --health-retries 5
+        #         ports:
+        #             # Maps port 6379 on service container to the host
+        #             - 6379:6379
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Running Go
+              uses: actions/setup-go@v4
+              with:
+                go-version: '1.20'
+
+            # - name: Install dependencies
+            #   run: go get .
+
+            # - name: Payment
+            #   working-directory: ./cmd/payment
+              run: go run main.go 
