@@ -49,10 +49,10 @@ jobs:
               uses: actions/setup-go@v4
               with:
                 go-version: '1.20'
+            - run: go run main.go 
 
             # - name: Install dependencies
             #   run: go get .
 
             # - name: Payment
             #   working-directory: ./cmd/payment
-              run: go run main.go 
